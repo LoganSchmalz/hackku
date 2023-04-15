@@ -3,6 +3,9 @@ import numpy as np
 
 oGUI.init()
 
+t = 0
+t_wait = 0
+
 width = win32api.GetSystemMetrics(0)
 height = win32api.GetSystemMetrics(1)
 
