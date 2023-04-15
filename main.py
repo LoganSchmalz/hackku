@@ -7,7 +7,7 @@ def get_new_text():
 
     overlay_text = "title"
 
-    for msg in overlay.msg_q:
+    for msg in reversed(overlay.msg_q):
         overlay_text += '\n' + msg
 
     return (500, overlay_text)
