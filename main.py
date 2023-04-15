@@ -1,6 +1,7 @@
 from time import sleep
 from overlay import Overlay
 from audio_processor import AudioProcessor
+from audio_bridge import AudioBridge
 from sys import platform
 if 'windows' in platform:
     import win32api
@@ -14,7 +15,8 @@ def main():
             "boat", "boathouse", "market", "pizza", "garden", "tree", "window", "rafters", "tree", "cat", "dice", "generator", "Jen", "door", "wine", "courtyard", "cat", "catwalk", "Subrosa", 
             ]
 
-    ap = AudioProcessor()
+    speakers = AudioBridge()
+    ap = AudioProcessor(source=speakers)
 
     def get_new_text():
         ap.update_transcript()
