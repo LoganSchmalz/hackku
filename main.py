@@ -23,7 +23,8 @@ def main():
 
     overlay = Overlay((int(screen_width/2), int(screen_height/2)), get_new_text)
     overlay.font(4)
-    overlay.set_x(screen_width - (int(overlay.width) + int(screen_width/100))) #10 pixels of padding, should also be relative to screen size in the future
+    #overlay = Overlay(get_new_text)
+    overlay.set_x(screen_width - (int(overlay.width) + int(screen_width/2.1))) #10 pixels of padding, should also be relative to screen size in the future
     overlay.set_y(screen_height - (int(overlay.height) + int(screen_height/7))) #400 pixels of padding, should also be relative to screen size in the future
     overlay.run()
 
