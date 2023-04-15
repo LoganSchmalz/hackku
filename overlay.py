@@ -1,3 +1,5 @@
+#inspired by https://github.com/notatallshaw/fall_guys_ping_estimate/blob/main/fgpe/overlay.py
+
 import sys
 import logging
 import tkinter as tk
@@ -55,10 +57,3 @@ class Overlay:
         self.caption_text.set(self.initial_text)
         self.root.after(self.initial_delay, self.update_label)
         self.root.mainloop()
-
-def get_new_text():
-    print("getting new text")
-    return (500, "test")
-
-overlay = Overlay(get_new_text)
-overlay.run()
