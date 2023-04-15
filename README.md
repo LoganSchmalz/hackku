@@ -5,7 +5,7 @@ Project: Live Text Speech
 
 ### Project Description: 
 
-  >The user's live audio will be recorded and transcribed to text sentence by sentence.
+  >The user's live audio will be recorded and transcribed to text sentence by sentence. Phrases are sequentially displayed to the screen, bottom up.
   >
   >The primary use case we focused on is for hard of hearing individuals playing video games. 
   >For some video games, like Valorant, communication is a very important aspect of the gameplay--an aspect which is of course less accessible to hard of hearing individuals.
