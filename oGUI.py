@@ -153,6 +153,9 @@ class Text:
 
     screen.blit(textSurface, (self.x, self.y)) #Main Text
 
+  def updateText(self, str):
+    self.textStr = str
+
 class Button:
     def __init__(self, color, clickedColor, x,y,width,height, text=''):
       self.color = color
