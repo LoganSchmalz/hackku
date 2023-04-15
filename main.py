@@ -1,7 +1,9 @@
 import oGUI, win32api
+import numpy as np
 
 oGUI.init()
-
+t = 0
+t_wait = 0
 rect = oGUI.Rect(oGUI.darkgray, 100, 100, 300, 500)
 button = oGUI.Button(oGUI.gray, oGUI.orange, 120, 200, 30, 30)
 button2 = oGUI.Button(oGUI.darkgray, oGUI.lightgray, 368, 103, 30, 35)
@@ -17,7 +19,21 @@ height = win32api.GetSystemMetrics(1)
 string = "Checkbox"
 
 while True:
+    if t > 500:
+        string = " "
+        t = 0
+    elif t_wait > 100:
+        string = " "
+        t_wait = 0
+    
+    add = np.random.randint(10)
+    if add < 7:
+        t_wait += 1
+    
     string += "a"
+    
+    t += 1
+    print(t)
     myText2 = oGUI.Text(oGUI.orange, 155, 152, 25, string)
 
     button.is_hovered(oGUI.lightgray)
