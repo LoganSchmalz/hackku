@@ -6,6 +6,14 @@ if 'windows' in platform:
     import win32api
 
 def main():
+    key_phrases = [
+            "spawn", "CT", "T", "A", "B", "mid", "middle", "default", "main", "cubby", "link", "connector", "heaven", "hell", "lobby", "bottom", "top"
+            "Raina", "Astra", "Breach", "Brimstone", "Chamber", "Cypher", "Jett", "KO", "Killjoy", "Neon", "Omen", "Phoenix", "Raise", "Sage", "Sky", "Soba", "Viper", "Yoru", 
+            "plant", "defuse", "defusing", "sticking", "stick", "planting", "bomb", "spike", 
+            "lit", "one shot", "1", "low",
+            "boat", "boathouse", "market", "pizza", "garden", "tree", "window", "rafters", "tree", "cat", "dice", "generator", "Jen", "door", "wine", "courtyard", "cat", "catwalk", "Subrosa", 
+            ]
+
     ap = AudioProcessor()
 
     def get_new_text():
