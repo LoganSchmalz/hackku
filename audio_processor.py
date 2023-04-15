@@ -14,7 +14,7 @@ from time import sleep
 from sys import platform
 
 class AudioProcessor:
-    def __init__(self, model: str = "tiny", non_english: bool = False, record_timeout: float = 2, phrase_timeout: float = 3, energy_threshold: int = 1000, default_microphone: str = "default", ):
+    def __init__(self, model: str = "tiny", non_english: bool = False, record_timeout: float = 2, phrase_timeout: float = 1, energy_threshold: int = 1000, default_microphone: str = "default", ):
         # The last time a recording was retreived from the queue.
         self.phrase_time = None
         # Current raw audio bytes.
