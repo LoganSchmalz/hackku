@@ -24,6 +24,7 @@ class Overlay:
     width = "500"
     x = "100"
     y = "100"
+    msg_q = []
 
     def __init__(self, get_new_text_callback):
         self.get_new_text_callback = get_new_text_callback
@@ -78,6 +79,11 @@ class Overlay:
     def set_y(self, y) -> None:
         self.y = str(y)
         self.root.geometry(self.geo_str(self.width, self.height, self.x, self.y))
+
+    def insert_msg(self, msg) -> None:
+        self.msg_q.append(msg)
+        if (len(self.msg_q) > 4): self.msg_q.pop(0)
+
 
     def run(self) -> None:
         self.caption_text.set(self.initial_text)
