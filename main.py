@@ -7,7 +7,7 @@ if 'windows' in platform:
 
 def main():
     key_phrases = [
-            "spawn", "CT", "T", "A", "B", "mid", "middle", "default", "main", "cubby", "link", "connector", "heaven", "hell", "lobby", "bottom", "top"
+            "spawn", "CT", "T", "A", "B", "mid", "middle", "default", "main", "cubby", "link", "connector", "heaven", "hell", "lobby", "bottom", "top", "site", "cite"
             "Raina", "Astra", "Breach", "Brimstone", "Chamber", "Cypher", "Jett", "KO", "Killjoy", "Neon", "Omen", "Phoenix", "Raise", "Sage", "Sky", "Soba", "Viper", "Yoru", 
             "plant", "defuse", "defusing", "sticking", "stick", "planting", "bomb", "spike", 
             "lit", "one shot", "1", "low",
