@@ -24,7 +24,7 @@ class Overlay:
     width = "500"
     x = "100"
     y = "100"
-    msg_q = []
+    msg_q = ["","",""]
 
     def __init__(self, get_new_text_callback):
         self.get_new_text_callback = get_new_text_callback
