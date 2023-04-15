@@ -23,7 +23,7 @@ class Overlay:
     def __init__(self, get_new_text_callback):
         self.get_new_text_callback = get_new_text_callback
 
-        self.initial_delay = 10
+        self.initial_delay = 0
         self.initial_text = "Caption overlay"
 
         self.root = tk.Tk()
@@ -40,6 +40,8 @@ class Overlay:
         signal.signal(signal.SIGINT, lambda x,y : self.destroy())
         self.root.bind_all('<Control-c>', self.destroy)
         self.root.after(500, self.check_exit)
+        
+        self.root.attributes("-alpha", 0.5)
 
     def check_exit(self) -> None:
         self.root.after(500, self.check_exit)
