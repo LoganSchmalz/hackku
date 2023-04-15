@@ -40,7 +40,7 @@ class Overlay:
         self.root.wm_attributes("-topmost", True)
 
         self.caption_text = tk.StringVar()
-        self.caption_label = tk.Label(self.root, textvariable=self.caption_text, font=('Consolas','28'), fg='white', bg='black')
+        self.caption_label = tk.Label(self.root, textvariable=self.caption_text, font=('Consolas',28), fg='white', bg='black')
         self.caption_label.grid(row=0,column=1)
 
         signal.signal(signal.SIGINT, lambda x,y : self.destroy())
@@ -89,3 +89,6 @@ class Overlay:
         self.caption_text.set(self.initial_text)
         self.root.after(self.initial_delay, self.update_label)
         self.root.mainloop()
+
+    def font(self,font_size):
+        self.caption_label = tk.Label(self.root, textvariable=self.caption_text, font=('Consolas',12), fg='white', bg='black')
