@@ -4,6 +4,7 @@ import sys
 import logging
 import tkinter as tk
 import signal
+from typing import Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -20,13 +21,16 @@ class GracefulExit(Exception):
 
 
 class Overlay:
-    height = "400"
-    width = "500"
+    #height = "400"
+    #width = "500"
     x = "100"
     y = "100"
-    msg_q = ["","",""]
+    msg_q = ["title", "", "", ""]
 
-    def __init__(self, get_new_text_callback):
+    def __init__(self, dimensions: Tuple[int,int], get_new_text_callback):
+        self.width = str(dimensions[0])
+        self.height = str(dimensions[1])
+
         self.get_new_text_callback = get_new_text_callback
 
         self.initial_delay = 0
@@ -35,6 +39,7 @@ class Overlay:
         self.root = tk.Tk()
         self.root.report_callback_exception = report_callback_exception
         self.root.overrideredirect(True)
+        print(self.geo_str(self.width, self.height, self.x, self.y))
         self.root.geometry(self.geo_str(self.width, self.height, self.x, self.y))
         self.root.lift()
         self.root.wm_attributes("-topmost", True)
@@ -57,9 +62,12 @@ class Overlay:
 
     def update_label(self) -> None:
         wait_time, update_text = self.get_new_text_callback()
-        self.caption_text.set(update_text)
+
+        self.msg_q.pop(0)
+        self.msg_q.append(update_text)
+
+        self.caption_text.set("\n".join(self.msg_q))
         self.root.after(wait_time, self.update_label)
-        pass
 
     def geo_str(self, height, width, x, y) -> str:
         return height + "x" + width + "+" + x + "+" + y
