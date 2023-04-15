@@ -20,6 +20,11 @@ class GracefulExit(Exception):
 
 
 class Overlay:
+    height = "400"
+    width = "500"
+    x = "100"
+    y = "100"
+
     def __init__(self, get_new_text_callback):
         self.get_new_text_callback = get_new_text_callback
 
@@ -29,7 +34,7 @@ class Overlay:
         self.root = tk.Tk()
         self.root.report_callback_exception = report_callback_exception
         self.root.overrideredirect(True)
-        self.root.geometry("+700+500")
+        self.root.geometry(self.geo_str(self.width, self.height, self.x, self.y))
         self.root.lift()
         self.root.wm_attributes("-topmost", True)
 
@@ -54,6 +59,25 @@ class Overlay:
         self.caption_text.set(update_text)
         self.root.after(wait_time, self.update_label)
         pass
+
+    def geo_str(self, height, width, x, y) -> str:
+        return height + "x" + width + "+" + x + "+" + y
+
+    def set_width(self, width) -> None:
+        self.width = str(width)
+        self.root.geometry(self.geo_str(self.width, self.height, self.x, self.y))
+    
+    def set_height(self, height) -> None:
+        self.height = str(height)
+        self.root.geometry(self.geo_str(self.width, self.height, self.x, self.y))
+    
+    def set_x(self, x) -> None:
+        self.x = str(x)
+        self.root.geometry(self.geo_str(self.width, self.height, self.x, self.y))
+
+    def set_y(self, y) -> None:
+        self.y = str(y)
+        self.root.geometry(self.geo_str(self.width, self.height, self.x, self.y))
 
     def run(self) -> None:
         self.caption_text.set(self.initial_text)
