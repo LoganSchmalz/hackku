@@ -46,7 +46,7 @@ class Overlay:
         self.root.wm_attributes("-topmost", True)
 
         self.caption_text = tk.StringVar()
-        self.caption_label = tk.Label(self.root, justify="left", textvariable=self.caption_text, font=('Consolas',12), fg='white', bg='black', wraplength=self.width)
+        self.caption_label = tk.Label(self.root, anchor="center", justify="left", textvariable=self.caption_text, font=('Consolas',12), fg='white', bg='black', wraplength=self.width)
         self.caption_label.grid(row=0,column=1)
 
         signal.signal(signal.SIGINT, lambda x,y : self.destroy())
@@ -68,7 +68,7 @@ class Overlay:
         #self.caption_text.set("\n".join(self.msg_q))
         #self.root.after(wait_time, self.update_label)
 
-        self.caption_text.set("\n".join(update_text))
+        self.caption_text.set("\n".join(update_text[-16:]))
         self.root.after(wait_time, self.update_label)
 
     def geo_str(self, height, width, x, y) -> str:
