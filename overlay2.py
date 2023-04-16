@@ -13,7 +13,7 @@ class Overlay2(wx.Frame):
         screen_height - (dimensions[1] + int(screen_height/7))
          )
         style = ( wx.CLIP_CHILDREN | wx.STAY_ON_TOP | wx.FRAME_NO_TASKBAR |
-                  wx.NO_BORDER | wx.FRAME_SHAPED  )
+                  wx.NO_BORDER | wx.FRAME_SHAPED )
         
         wx.Frame.__init__(self, None, title='Fancy', style = style)
         self.SetTransparent(128)
@@ -31,12 +31,13 @@ class Overlay2(wx.Frame):
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.update_label, self.timer)
-        self.timer.Start(500)
+        self.timer.Start(2000)
 
         self.tb = TaskBarIcon(self.screen_width, self.screen_height, self.change_position, self.change_size)
 
     def update_label(self, event) -> None:
         wait_time, update_text = self.get_new_text_callback()
+        i
         self.st.SetLabelText("\n".join(update_text))
         self.st.Wrap(self.Size[0])
 
