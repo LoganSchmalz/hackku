@@ -50,10 +50,8 @@ class Overlay2(wx.Frame):
             words_list.extend(i.split())
 
         for i in words_list:
-            c = 0
-            
             for j in key_phrases.split():
-                if (i == j):
+                if (i.lower() == j.lower()):
                     phrases_list.append(i)
 
         print(phrases_list)
