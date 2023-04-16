@@ -18,11 +18,11 @@ def main():
             "boat", "boathouse", "market", "pizza", "garden", "tree", "window", "rafters", "tree", "cat", "dice", "generator", "Jen", "door", "wine", "courtyard", "cat", "catwalk", "Subrosa", 
             ])
     #highlight key words
-    def highlight(get_new_text, key_phrases):
-        replacement = lambda match: "<mark>" + match.group() + "</mark>"
-    text = re.sub("|".join(map(re.escape, key_phrases)), replacement, text, flags=re.I)
+    #def highlight(get_new_text, key_phrases):
+    #    replacement = lambda match: "<mark>" + match.group() + "</mark>"
+    #text = re.sub("|".join(map(re.escape, key_phrases)), replacement, text, flags=re.I)
 
-    highlight(get_new_text, key_phrases)
+    #highlight(get_new_text, key_phrases)
     
     speakers = AudioBridge()
     ap = AudioProcessor(source=speakers, phrases=key_phrases)
