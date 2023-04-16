@@ -1,4 +1,6 @@
 from overlay import Overlay
+from tray_icon import tray
+import threading
 from sys import platform
 if 'windows' in platform:
     import win32api
@@ -26,3 +28,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
