@@ -36,6 +36,10 @@ class Overlay2(wx.Frame):
         #self.st.Wrap(self.Size[0])
 
         self.kt = wx.TextCtrl(self, value="", style = (wx.TE_READONLY), size=(self.dimensions[0], 30))
+        font = self.kt.GetFont()
+        font.PointSize = 14
+        font.SetWeight(800)
+        self.kt.SetFont(font)
         self.kt.SetForegroundColour((0, 0, 0))
 
         self.timer = wx.Timer(self)
@@ -52,7 +56,7 @@ class Overlay2(wx.Frame):
         self.st.SetInsertionPoint(-1)
 
     def update_key_label(self, phrases_list) -> None:
-        self.kt.SetValue("".join(phrases_list))
+        self.kt.SetValue(", ".join(phrases_list))
         self.kt.SetInsertionPoint(-1)
         #return
     
@@ -68,7 +72,7 @@ class Overlay2(wx.Frame):
                 if (i.lower() == j.lower()):
                     phrases_list.append(j)
 
-        print(phrases_list)
+        #print(phrases_list)
         self.update_key_label(phrases_list)
         return phrases_list
 
@@ -78,3 +82,5 @@ class Overlay2(wx.Frame):
 
     def change_size(self, size, event):
         self.SetSize(wx.Size(size[0], size[1]))
+        self.st.SetSize(wx.Size(size[0], size[1]-30))
+        self.kt.SetSize(wx.Size(size[0], 30))

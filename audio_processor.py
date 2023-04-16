@@ -119,8 +119,8 @@ class AudioProcessor:
 
             # Clear the console to reprint the updated transcription.
             os.system('cls' if os.name=='nt' else 'clear')
-            for line in self.transcription:
-                print(line)
+            #for line in self.transcription:
+            #    print(line)
             # Flush stdout.
             print('', end='', flush=True)
 
@@ -156,9 +156,9 @@ def main():
             print(e)
             break
 
-    print("\n\nTranscription:")
-    for line in ap.transcription:
-        print(line)
+    # print("\n\nTranscription:")
+    # for line in ap.transcription:
+    #     print(line)
 
 
 if __name__ == "__main__":
