@@ -114,6 +114,8 @@ class AudioProcessor:
             # Otherwise edit the existing one.
             if phrase_complete:
                 self.transcription.append(text)
+                if (len(self.transcription) > 20):
+                    self.transcription.pop(0)
             else:
                 self.transcription[-1] = text
 
