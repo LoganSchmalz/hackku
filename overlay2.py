@@ -23,7 +23,10 @@ class Overlay2(wx.Frame):
         self.SetSize(wx.Size(dimensions[0], dimensions[1]))
         self.SetBackgroundColour((0,0,0))
         
-        self.st = wx.TextCtrl(self, value="")
+        self.st = wx.TextCtrl(self, value="", style = (wx.TE_READONLY | wx.TE_MULTILINE | wx.TE_NO_VSCROLL))
+        self.st.Enable(False)
+        self.st.SetScrollPos(wx.VERTICAL, self.st.GetScrollRange(wx.VERTICAL))
+        self.st.SetInsertionPoint(-1)
         font = self.st.GetFont()
         font.PointSize = 12
         self.st.SetFont(font)
@@ -39,8 +42,9 @@ class Overlay2(wx.Frame):
     def update_label(self, event) -> None:
         wait_time, update_text = self.get_new_text_callback()
         self.check_transcript(update_text, self.key_phrases, None)
-        self.st.SetLabelText("\n".join(update_text))
-        self.st.Wrap(self.Size[0])
+        self.st.SetValue("\n".join(update_text))
+        self.st.SetScrollPos(wx.VERTICAL, self.st.GetScrollRange(wx.VERTICAL))
+        self.st.SetInsertionPoint(-1)
     
     def check_transcript(self, update_text, key_phrases, event):
         words_list = [] #list of current words in the updated text
