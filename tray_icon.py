@@ -58,15 +58,15 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         self.SetIcon(icon, tray_name)
 
     def small_menu(self, event):
-        self.dimensions = (int(self.screen_width/12), int(self.screen_height/20))
-        self.change_size_callback(self.dimension, event)
+        self.dimensions = (int(self.screen_width/4), int(self.screen_height/10))
+        self.change_size_callback(self.dimensions, event)
 
     def med_menu(self,event):
-        self.dimensions = (int(self.screen_width/5), int(self.screen_height/10))
+        self.dimensions = (int(self.screen_width/4), int(self.screen_height/5))
         self.change_size_callback(self.dimensions, event)
         
     def large_menu(self,event):
-        self.dimensions = (int(self.screen_width/2), int(self.screen_height/2))
+        self.dimensions = (int(self.screen_width/4), int(self.screen_height/3))
         self.change_size_callback(self.dimensions, event)
 
     def exit(self,event):
@@ -87,7 +87,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     
     def top_right(self,event):
         pos = (
-        int(self.screen_width -self.screen_width/20 - self.dimensions[0] ),
+        int(self.screen_width -self.screen_width/20 ),
         int(self.screen_height/20)
         )
         self.change_pos_callback(pos,event)
