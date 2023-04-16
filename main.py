@@ -4,7 +4,7 @@ from overlay2 import Overlay2
 from audio_processor import AudioProcessor
 from sys import platform
 import wx
-if 'windows' in platform:
+if 'win' in platform:
     from audio_bridge import AudioBridge
     import win32api
 
@@ -23,7 +23,8 @@ def main():
 
     #highlight(get_new_text, key_phrases)
     
-    if 'windows' in platform:
+    print(platform)
+    if 'win' in platform:
         speakers = AudioBridge()
         ap = AudioProcessor(source=speakers, phrases=key_phrases)
     else:
@@ -34,7 +35,7 @@ def main():
         return (500, ap.transcription)
         #return (500,"a")
 
-    if 'windows' in platform:
+    if 'win' in platform:
         screen_width = win32api.GetSystemMetrics(0)
         screen_height = win32api.GetSystemMetrics(1)
     else:

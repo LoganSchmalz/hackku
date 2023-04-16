@@ -23,12 +23,12 @@ class Overlay2(wx.Frame):
         self.SetSize(wx.Size(dimensions[0], dimensions[1]))
         self.SetBackgroundColour((0,0,0))
         
-        self.st = wx.StaticText(self, label="")
+        self.st = wx.TextCtrl(self, value="")
         font = self.st.GetFont()
         font.PointSize = 12
         self.st.SetFont(font)
         self.st.SetForegroundColour((255,255,255))
-        self.st.Wrap(self.Size[0])
+        #self.st.Wrap(self.Size[0])
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.update_label, self.timer)
