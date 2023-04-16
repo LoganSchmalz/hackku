@@ -14,7 +14,7 @@ from time import sleep
 from sys import platform
 
 class AudioProcessor:
-    def __init__(self, source = None, model: str = "tiny", non_english: bool = False, record_timeout: float = 2, phrase_timeout: float = 1, energy_threshold: int = 1000, default_microphone: str = "default", ):
+    def __init__(self, source = None, phrases = None, model: str = "tiny", non_english: bool = False, record_timeout: float = 2, phrase_timeout: float = 1, energy_threshold: int = 1000, default_microphone: str = "default", ):
         # The last time a recording was retreived from the queue.
         self.phrase_time = None
         # Current raw audio bytes.
@@ -27,6 +27,7 @@ class AudioProcessor:
         # Definitely do this, dynamic energy compensation lowers the energy threshold dramtically to a point where the SpeechRecognizer never stops recording.
         self.recorder.dynamic_energy_threshold = False
 
+        self.phrases = phrases
 
         if source == None:
             # Important for linux users. 
@@ -105,7 +106,7 @@ class AudioProcessor:
                 f.write(wav_data.read())
 
             # Read the transcription.
-            result = self.audio_model.transcribe(self.temp_file, fp16=torch.cuda.is_available())
+            result = self.audio_model.transcribe(self.temp_file, fp16=torch.cuda.is_available(), initial_prompt=self.phrases)
             text = result['text'].strip()
 
             # If we detected a pause between recordings, add a new item to our transcripion.

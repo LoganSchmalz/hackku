@@ -110,7 +110,7 @@ if __name__ == "__main__":
 
     with AudioBridge() as source:
         print("Say something!")
-        audio = r.listen(source, 10, 10)
+        audio = r.listen(source, 10,)
         print("Processing...")
 
     # recognize speech using Google Speech Recognition
