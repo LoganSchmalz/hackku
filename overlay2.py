@@ -8,10 +8,10 @@ class Overlay2(wx.Frame):
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.key_phrases = key_phrases
-        dimensions: Tuple[int, int] = (int(screen_width/2), int(screen_height/2))
+        dimensions: Tuple[int, int] = (int(screen_width/4), int(screen_height/5))
         coordinates: Tuple[int, int] = (
-        screen_width - (dimensions[0] + int(screen_width/2.1)),
-        screen_height - (dimensions[1] + int(screen_height/7))
+        int(self.screen_width/20),
+        int(self.screen_height / 2 - self.dimensions[1] / 2)
          )
         style = ( wx.CLIP_CHILDREN | wx.STAY_ON_TOP | wx.FRAME_NO_TASKBAR |
                   wx.NO_BORDER | wx.FRAME_SHAPED )
