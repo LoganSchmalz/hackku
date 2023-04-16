@@ -109,7 +109,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def bot_left(self,event):
         pos = (
         int(self.screen_width/20),
-        int(self.screen_height -self.screen_height/20 + self.dimensions[1])
+        int(self.screen_height -self.screen_height/20 - self.dimensions[1])
          )
         self.change_pos_callback(pos, event)
 
