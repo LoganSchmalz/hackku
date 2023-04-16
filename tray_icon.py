@@ -1,11 +1,8 @@
 import wx
 import wx.adv
-from overlay2 import change_position
-
 
 tray_name = 'Voice to Text'
 icon = 'icon.png'
-
 
 def create_menu_item(menu, label, func):
     item = wx.MenuItem(menu, -1, label)
@@ -14,10 +11,12 @@ def create_menu_item(menu, label, func):
     return item
 
 class TaskBarIcon(wx.adv.TaskBarIcon):
-    def __init__(self):
+    def __init__(self, change_pos_callback, change_size_callback):
         super(TaskBarIcon, self).__init__()
         self.set_icon(icon)
         self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, self.placeholder)
+        self.change_pos_callback = change_pos_callback
+        self.change_size_callback = change_size_callback
 
     def CreatePopupMenu(self):
         menu = wx.Menu()
@@ -55,7 +54,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         self.SetIcon(icon, tray_name)
 
     def small_menu(self, event):
-        print("small")
+        self.change_size_callback((10,10), event)
 
     def med_menu(self,event):
         print ('medium')
@@ -71,7 +70,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         return
     
     def top_left(self,event):
-        change_position([10,10])
+        self.change_pos_callback([10,10], event)
     
     def top_right(self,event):
         return
