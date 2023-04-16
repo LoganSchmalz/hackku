@@ -21,6 +21,9 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         self.screen_width = screen_width
         self.dimensions = (int(self.screen_width/4), int(self.screen_height/5)) #make the same as medium!!
 
+        self.x_pad = screen_width/30
+        self.y_pad = screen_height/20
+
     def CreatePopupMenu(self):
         menu = wx.Menu()
        
@@ -74,50 +77,47 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     
     def placeholder(self,event):
         return
-
-
     
     def top_left(self,event):
         pos = (
-        int(self.screen_width/20),
-        int(self.screen_height/20)
+        int(self.x_pad),
+        int(self.y_pad)
          )
         self.change_pos_callback(pos, event)
     
     def top_right(self,event):
         pos = (
-        int(self.screen_width - self.dimensions[0] - self.screen_width/20),
-        int(self.screen_height/20)
+        int(self.screen_width - (self.dimensions[0] + self.x_pad)),
+        int(self.y_pad)
         )
         self.change_pos_callback(pos,event)
     
     def mid_left(self,event):
         pos = (
-        int(self.screen_width/20),
-        int(self.screen_height / 2 - self.dimensions[1] / 2)
-         )
+        int(self.x_pad),
+        int(self.screen_height/2) - int(self.dimensions[1]/2)
+        )
         self.change_pos_callback(pos, event)
     
     def mid_right(self,event):
         pos = (
-        int(self.screen_width -self.screen_width/20 - self.dimensions[0] ),
-        int(self.screen_height/2 - self.dimensions[1] / 2)
+        int(self.screen_width - (self.dimensions[0] + self.x_pad) ),
+        int(self.screen_height/2) - int(self.dimensions[1]/2)
         )
         self.change_pos_callback(pos,event)
 
-
     def bot_left(self,event):
         pos = (
-        int(self.screen_width/20),
-        int(self.screen_height -self.screen_height/20 - self.dimensions[1])
+        int(self.x_pad),
+        int(self.screen_height - (self.dimensions[1] + self.y_pad))
          )
         self.change_pos_callback(pos, event)
 
     
     def bot_right(self,event):
         pos = (
-        int(self.screen_width -self.screen_width/20 - self.dimensions[0] ),
-        int(self.screen_height -self.screen_height/20 - self.dimensions[1])
+        int(self.screen_width - (self.dimensions[0] + self.x_pad)),
+        int(self.screen_height - (self.dimensions[1] + self.y_pad))
         )
         self.change_pos_callback(pos,event)
     

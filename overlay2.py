@@ -8,22 +8,22 @@ class Overlay2(wx.Frame):
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.key_phrases = key_phrases
-        dimensions: Tuple[int, int] = (int(screen_width/4), int(screen_height/5))
-        coordinates: Tuple[int, int] = (
-        int(self.screen_width/20),
-        int(self.screen_height / 2 - self.dimensions[1] / 2)
-         )
+        self.dimensions: Tuple[int, int] = (int(screen_width/4), int(screen_height/5))
+        self.coordinates: Tuple[int, int] = (
+        int(self.screen_width/30),
+        int(self.screen_height/2) - int(self.dimensions[1]/2)
+        )
         style = ( wx.CLIP_CHILDREN | wx.STAY_ON_TOP | wx.FRAME_NO_TASKBAR |
                   wx.NO_BORDER | wx.FRAME_SHAPED )
         
         wx.Frame.__init__(self, None, title='Fancy', style = style)
         self.SetTransparent(128)
         self.Show(True)
-        self.SetPosition(wx.Point(coordinates[0], coordinates[1]))
-        self.SetSize(wx.Size(dimensions[0], dimensions[1]))
+        self.SetPosition(wx.Point(self.coordinates[0], self.coordinates[1]))
+        self.SetSize(wx.Size(self.dimensions[0], self.dimensions[1]))
         self.SetBackgroundColour((0,0,0))
         
-        self.st = wx.TextCtrl(self, value="", style = (wx.TE_READONLY | wx.TE_MULTILINE), size=(dimensions[0],dimensions[1]))
+        self.st = wx.TextCtrl(self, value="", style = (wx.TE_READONLY | wx.TE_MULTILINE), size=(self.dimensions[0],self.dimensions[1]))
         self.st.Enable(False)
         self.st.SetScrollPos(wx.VERTICAL, self.st.GetScrollRange(wx.VERTICAL))
         self.st.SetInsertionPoint(-1)
