@@ -43,20 +43,23 @@ class Overlay2(wx.Frame):
         self.st.Wrap(self.Size[0])
     
     def check_transcript(self, update_text, key_phrases, event):
-        words_list = []
+        words_list = [] #list of current words in the updated text
+        phrases_list = [] #list of phrases that actually appear in the updated text
 
         for i in update_text:
             words_list.extend(i.split())
 
-        res = []
         for i in words_list:
             c = 0
-            for j in update_text:
-                if(i.count(j) >= 1):
-                    c += 1
-            if(c == len(update_text)):
-                res.append(i)
-        return res
+            
+            for j in key_phrases.split():
+                if (i == j):
+                    phrases_list.append(i)
+
+        print(phrases_list)
+
+        return phrases_list
+
 
     def change_position(self, pos, event):
         self.SetPosition(wx.Point(pos[0], pos[1]))
