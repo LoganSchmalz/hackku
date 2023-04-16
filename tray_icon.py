@@ -1,5 +1,6 @@
 import wx
 import wx.adv
+import win32api
 
 tray_name = 'Voice to Text'
 icon = 'icon.png'
@@ -11,12 +12,14 @@ def create_menu_item(menu, label, func):
     return item
 
 class TaskBarIcon(wx.adv.TaskBarIcon):
-    def __init__(self, change_pos_callback, change_size_callback):
+    def __init__(self, screen_width, screen_height, change_pos_callback, change_size_callback):
         super(TaskBarIcon, self).__init__()
         self.set_icon(icon)
         self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, self.placeholder)
         self.change_pos_callback = change_pos_callback
         self.change_size_callback = change_size_callback
+        self.screen_height = screen_height
+        self.screen_width = screen_width
 
     def CreatePopupMenu(self):
         menu = wx.Menu()
@@ -54,10 +57,16 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         self.SetIcon(icon, tray_name)
 
     def small_menu(self, event):
-        self.change_size_callback((10,10), event)
+        size = [(int(self.screen_width/10), int(self.screen_height/10))]
+        self.change_size_callback(size, event)
 
     def med_menu(self,event):
-        print ('medium')
+        size = [(int(self.screen_width/20), int(self.screen_height/20))]
+        self.change_size_callback(size, event)
+        
+    def large_menu(self,event):
+        size = [(int(self.screen_width/2), int(self.screen_height/2))]
+        self.change_size_callback(size, event)
 
     def exit(self,event):
         #wx.CallAfter(self.Destroy)
@@ -66,8 +75,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def placeholder(self,event):
         return
 
-    def large_menu(self,event):
-        return
+
     
     def top_left(self,event):
         self.change_pos_callback([10,10], event)

@@ -39,14 +39,14 @@ def main():
         screen_width = 1000
         screen_height = 700
 
-    app_dimensions: Tuple[int, int] = (int(screen_width/2), int(screen_height/2))
-    app_coordinates: Tuple[int, int] = (
-        screen_width - (app_dimensions[0] + int(screen_width/2.1)),
-        screen_height - (app_dimensions[1] + int(screen_height/7))
-    )
+    # app_dimensions: Tuple[int, int] = (int(screen_width/2), int(screen_height/2))
+    # app_coordinates: Tuple[int, int] = (
+    #     screen_width - (app_dimensions[0] + int(screen_width/2.1)),
+    #     screen_height - (app_dimensions[1] + int(screen_height/7))
+    # )
     
     app = wx.App()
-    overlay = Overlay2(app_dimensions, app_coordinates, get_new_text)
+    overlay = Overlay2(screen_width, screen_height, get_new_text)
     app.MainLoop()
 
     # overlay = Overlay((int(screen_width/2), int(screen_height/2)), get_new_text)

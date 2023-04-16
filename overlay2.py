@@ -3,9 +3,13 @@ from typing import Tuple
 from tray_icon import TaskBarIcon
 
 class Overlay2(wx.Frame):
-    def __init__(self, dimensions: Tuple[int,int], coordinates: Tuple[int, int], get_new_text_callback):
+    def __init__(self, screen_width, screen_height, get_new_text_callback):
         self.get_new_text_callback = get_new_text_callback
-
+        dimensions: Tuple[int, int] = (int(screen_width/2), int(screen_height/2))
+        coordinates: Tuple[int, int] = (
+        screen_width - (dimensions[0] + int(screen_width/2.1)),
+        screen_height - (dimensions[1] + int(screen_height/7))
+         )
         style = ( wx.CLIP_CHILDREN | wx.STAY_ON_TOP | wx.FRAME_NO_TASKBAR |
                   wx.NO_BORDER | wx.FRAME_SHAPED  )
         
@@ -27,7 +31,7 @@ class Overlay2(wx.Frame):
         self.Bind(wx.EVT_TIMER, self.update_label, self.timer)
         self.timer.Start(500)
 
-        self.tb = TaskBarIcon(self.change_position, self.change_size)
+        self.tb = TaskBarIcon(self.screen_width, self.screen_height, self.change_position, self.change_size)
 
     def update_label(self, event) -> None:
         wait_time, update_text = self.get_new_text_callback()
