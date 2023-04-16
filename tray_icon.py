@@ -86,7 +86,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     
     def top_right(self,event):
         pos = (
-        int(self.screen_width - self.dimensions[0]),
+        int(self.screen_width - self.dimensions[0] - self.screen_width/20),
         int(self.screen_height/20)
         )
         self.change_pos_callback(pos,event)
@@ -94,14 +94,14 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def mid_left(self,event):
         pos = (
         int(self.screen_width/20),
-        int(self.screen_height/20 + self.screen_width / 3)
+        int(self.screen_height/20 + self.screen_height / 3)
          )
         self.change_pos_callback(pos, event)
     
     def mid_right(self,event):
         pos = (
         int(self.screen_width -self.screen_width/20 - self.dimensions[0] ),
-        int(self.screen_height/20 + self.screen_width / 3)
+        int(self.screen_height/20 + self.screen_height / 3)
         )
         self.change_pos_callback(pos,event)
 
@@ -109,7 +109,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def bot_left(self,event):
         pos = (
         int(self.screen_width/20),
-        int(self.screen_height/20 + self.screen_width *2 / 3)
+        int(self.screen_height/20 + self.screen_height *2 / 3)
          )
         self.change_pos_callback(pos, event)
 
@@ -117,7 +117,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def bot_right(self,event):
         pos = (
         int(self.screen_width -self.screen_width/20 - self.dimensions[0] ),
-        int(self.screen_height/20 + self.screen_width * 2 / 3)
+        int(self.screen_height/20 + self.screen_height * 2 / 3)
         )
         self.change_pos_callback(pos,event)
     
