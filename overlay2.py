@@ -38,12 +38,15 @@ class Overlay2(wx.Frame):
 
     def update_label(self, event) -> None:
         wait_time, update_text = self.get_new_text_callback()
-        check_transcript(update_text, self.key_phrases, None)
+        self.check_transcript(update_text, self.key_phrases, None)
         self.st.SetLabelText("\n".join(update_text))
         self.st.Wrap(self.Size[0])
     
     def check_transcript(self, update_text, key_phrases, event):
-        words_list = update_text.split()
+        words_list = []
+
+        for i in update_text:
+            words_list.extend(i.split())
 
         res = []
         for i in words_list:
@@ -51,7 +54,7 @@ class Overlay2(wx.Frame):
             for j in update_text:
                 if(i.count(j) >= 1):
                     c += 1
-            if(c == len(updated_text)):
+            if(c == len(update_text)):
                 res.append(i)
         return res
 

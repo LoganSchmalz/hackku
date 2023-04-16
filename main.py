@@ -46,7 +46,7 @@ def main():
     # )
     
     app = wx.App()
-    overlay = Overlay2(screen_width, screen_height, get_new_text)
+    overlay = Overlay2(screen_width, screen_height, key_phrases, get_new_text)
     app.MainLoop()
 
     # overlay = Overlay((int(screen_width/2), int(screen_height/2)), get_new_text)
