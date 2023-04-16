@@ -61,7 +61,8 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         print ('medium')
 
     def exit(self,event):
-        wx.CallAfter(self.Destroy)
+        #wx.CallAfter(self.Destroy)
+        wx.Exit()
     
     def placeholder(self,event):
         return
@@ -86,11 +87,3 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def mid_left(self,event):
         return
     
-
-
-def tray():
-    app = wx.App(False)
-    TaskBarIcon()
-    app.MainLoop()
-
-tray()

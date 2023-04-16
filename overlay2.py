@@ -1,5 +1,6 @@
 import wx
 from typing import Tuple
+from tray_icon import TaskBarIcon
 
 class Overlay2(wx.Frame):
     def __init__(self, dimensions: Tuple[int,int], coordinates: Tuple[int, int], get_new_text_callback):
@@ -20,14 +21,19 @@ class Overlay2(wx.Frame):
         font.PointSize = 12
         self.st.SetFont(font)
         self.st.SetForegroundColour((255,255,255))
+        self.st.Wrap(self.Size[0])
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.update_label, self.timer)
         self.timer.Start(500)
 
+        self.tb = TaskBarIcon()
+
     def update_label(self, event) -> None:
         wait_time, update_text = self.get_new_text_callback()
         self.st.SetLabelText("\n".join(update_text))
+        self.st.Wrap(self.Size[0])
+
 
     def change_position(self, pos, event):
         self.SetPosition(wx.Point(pos[0], pos[1]))
