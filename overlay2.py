@@ -16,7 +16,7 @@ class Overlay2(wx.Frame):
         self.SetSize(wx.Size(dimensions[0], dimensions[1]))
         self.SetBackgroundColour((0,0,0))
         
-        self.st = wx.StaticText(self, label="Test")
+        self.st = wx.StaticText(self, label="")
         font = self.st.GetFont()
         font.PointSize = 12
         self.st.SetFont(font)
