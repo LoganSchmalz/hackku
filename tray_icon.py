@@ -19,7 +19,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         self.change_size_callback = change_size_callback
         self.screen_height = screen_height
         self.screen_width = screen_width
-        self.dimensions = (int(self.screen_width/10), int(self.screen_height/10)) #make the same as medium!!
+        self.dimensions = (int(self.screen_width/4), int(self.screen_height/5)) #make the same as medium!!
 
     def CreatePopupMenu(self):
         menu = wx.Menu()
@@ -94,14 +94,14 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def mid_left(self,event):
         pos = (
         int(self.screen_width/20),
-        int(self.screen_height/2 - self.screen_height / 2)
+        int(self.screen_height / 2 - self.dimensions[1] / 2)
          )
         self.change_pos_callback(pos, event)
     
     def mid_right(self,event):
         pos = (
         int(self.screen_width -self.screen_width/20 - self.dimensions[0] ),
-        int(self.screen_height/2 - self.screen_height / 2)
+        int(self.screen_height/2 - self.dimensions[1] / 2)
         )
         self.change_pos_callback(pos,event)
 
@@ -117,9 +117,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def bot_right(self,event):
         pos = (
         int(self.screen_width -self.screen_width/20 - self.dimensions[0] ),
-        int(self.screen_height/20 -self.screen_height/20 + self.dimensions[1])
+        int(self.screen_height -self.screen_height/20 - self.dimensions[1])
         )
         self.change_pos_callback(pos,event)
-    
-
     
