@@ -14,7 +14,7 @@ from time import sleep
 from sys import platform
 
 class AudioProcessor:
-    def __init__(self, model: str = "tiny", non_english: bool = False, record_timeout: float = 2, phrase_timeout: float = 3, energy_threshold: int = 1000, default_microphone: str = "default", ):
+    def __init__(self, source = None, phrases = None, model: str = "tiny", non_english: bool = False, record_timeout: float = 2, phrase_timeout: float = 1, energy_threshold: int = 1000, default_microphone: str = "default", ):
         # The last time a recording was retreived from the queue.
         self.phrase_time = None
         # Current raw audio bytes.
@@ -27,22 +27,27 @@ class AudioProcessor:
         # Definitely do this, dynamic energy compensation lowers the energy threshold dramtically to a point where the SpeechRecognizer never stops recording.
         self.recorder.dynamic_energy_threshold = False
 
-        # Important for linux users. 
-        # Prevents permanent application hang and crash by using the wrong Microphone
-        if 'linux' in platform:
-            mic_name = default_microphone
-            if not mic_name or mic_name == 'list':
-                print("Available microphone devices are: ")
-                for index, name in enumerate(sr.Microphone.list_microphone_names()):
-                    print(f"Microphone with name \"{name}\" found")   
-                return
+        self.phrases = phrases
+
+        if source == None:
+            # Important for linux users. 
+            # Prevents permanent application hang and crash by using the wrong Microphone
+            if 'linux' in platform:
+                mic_name = default_microphone
+                if not mic_name or mic_name == 'list':
+                    print("Available microphone devices are: ")
+                    for index, name in enumerate(sr.Microphone.list_microphone_names()):
+                        print(f"Microphone with name \"{name}\" found")   
+                    return
+                else:
+                    for index, name in enumerate(sr.Microphone.list_microphone_names()):
+                        if mic_name in name:
+                            self.source = sr.Microphone(sample_rate=16000, device_index=index)
+                            break
             else:
-                for index, name in enumerate(sr.Microphone.list_microphone_names()):
-                    if mic_name in name:
-                        self.source = sr.Microphone(sample_rate=16000, device_index=index)
-                        break
+                self.source = sr.Microphone(sample_rate=16000)
         else:
-            self.source = sr.Microphone(sample_rate=16000)
+            self.source = source
 
         # Load / Download model
         if model != "large" and not non_english:
@@ -101,7 +106,7 @@ class AudioProcessor:
                 f.write(wav_data.read())
 
             # Read the transcription.
-            result = self.audio_model.transcribe(self.temp_file, fp16=torch.cuda.is_available())
+            result = self.audio_model.transcribe(self.temp_file, fp16=torch.cuda.is_available(), initial_prompt=self.phrases)
             text = result['text'].strip()
 
             # If we detected a pause between recordings, add a new item to our transcripion.

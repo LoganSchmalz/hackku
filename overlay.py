@@ -25,7 +25,7 @@ class Overlay:
     #width = "500"
     x = "100"
     y = "100"
-    msg_q = ["title", "", "", ""]
+    msg_q = ["","","",""]
 
     def __init__(self, dimensions: Tuple[int,int], get_new_text_callback):
         self.width = str(dimensions[0])
@@ -37,6 +37,7 @@ class Overlay:
         self.initial_text = "Caption overlay"
 
         self.root = tk.Tk()
+        self.root.configure(bg="black")
         self.root.report_callback_exception = report_callback_exception
         self.root.overrideredirect(True)
         print(self.geo_str(self.width, self.height, self.x, self.y))
@@ -45,14 +46,14 @@ class Overlay:
         self.root.wm_attributes("-topmost", True)
 
         self.caption_text = tk.StringVar()
-        self.caption_label = tk.Label(self.root, textvariable=self.caption_text, font=('Consolas',28), fg='white', bg='black')
+        self.caption_label = tk.Label(self.root, anchor="center", justify="left", textvariable=self.caption_text, font=('Consolas',12), fg='white', bg='black', wraplength=self.width)
         self.caption_label.grid(row=0,column=1)
 
         signal.signal(signal.SIGINT, lambda x,y : self.destroy())
         self.root.bind_all('<Control-c>', self.destroy)
         self.root.after(500, self.check_exit)
         
-        self.root.attributes("-alpha", 0.5)
+        self.root.attributes("-alpha", 0.75)
 
     def check_exit(self) -> None:
         self.root.after(500, self.check_exit)
@@ -63,10 +64,11 @@ class Overlay:
     def update_label(self) -> None:
         wait_time, update_text = self.get_new_text_callback()
 
-        self.msg_q.pop(0)
-        self.msg_q.append(update_text)
+        #self.insert_msg(update_text)
+        #self.caption_text.set("\n".join(self.msg_q))
+        #self.root.after(wait_time, self.update_label)
 
-        self.caption_text.set("\n".join(self.msg_q))
+        self.caption_text.set("\n".join(update_text[-16:]))
         self.root.after(wait_time, self.update_label)
 
     def geo_str(self, height, width, x, y) -> str:
@@ -99,4 +101,4 @@ class Overlay:
         self.root.mainloop()
 
     def font(self,font_size):
-        self.caption_label = tk.Label(self.root, textvariable=self.caption_text, font=('Consolas',12), fg='white', bg='black')
+        self.caption_label = tk.Label(self.root, textvariable=self.caption_text, font=('Consolas',12), fg='white', bg='black', wraplength=20)
