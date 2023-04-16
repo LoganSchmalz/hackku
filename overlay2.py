@@ -17,13 +17,13 @@ class Overlay2(wx.Frame):
                   wx.NO_BORDER | wx.FRAME_SHAPED )
         
         wx.Frame.__init__(self, None, title='Fancy', style = style)
-        self.SetTransparent(128)
+        self.SetTransparent(200)
         self.Show(True)
         self.SetPosition(wx.Point(self.coordinates[0], self.coordinates[1]))
         self.SetSize(wx.Size(self.dimensions[0], self.dimensions[1]))
         self.SetBackgroundColour((0,0,0))
         
-        self.st = wx.TextCtrl(self, value="", style = (wx.TE_READONLY | wx.TE_MULTILINE), size=(self.dimensions[0],self.dimensions[1]))
+        self.st = wx.TextCtrl(self, value="", style = (wx.TE_READONLY | wx.TE_MULTILINE), pos = (0, 30), size=(self.dimensions[0],self.dimensions[1] - 30))
         self.st.Enable(False)
         self.st.SetScrollPos(wx.VERTICAL, self.st.GetScrollRange(wx.VERTICAL))
         self.st.SetInsertionPoint(-1)
@@ -33,6 +33,10 @@ class Overlay2(wx.Frame):
         self.st.SetForegroundColour((255,255,255))
         self.st.SetBackgroundColour((0,0,0))
         #self.st.Wrap(self.Size[0])
+
+        self.kt = wx.TextCtrl(self, value="", style = (wx.TE_READONLY), size=(self.dimensions[0], 30))
+
+        self.st.Enable(False)
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.update_label, self.timer)
@@ -46,6 +50,9 @@ class Overlay2(wx.Frame):
         self.st.SetValue("\n".join(update_text))
         self.st.SetScrollPos(wx.VERTICAL, self.st.GetScrollRange(wx.VERTICAL))
         self.st.SetInsertionPoint(-1)
+
+    def update_key_label(self, phrases_list) -> None:
+        return
     
     def check_transcript(self, update_text, key_phrases, event):
         words_list = [] #list of current words in the updated text
