@@ -23,7 +23,7 @@ class Overlay2(wx.Frame):
         self.SetSize(wx.Size(dimensions[0], dimensions[1]))
         self.SetBackgroundColour((0,0,0))
         
-        self.st = wx.TextCtrl(self, value="", style = (wx.TE_READONLY | wx.TE_MULTILINE | wx.TE_NO_VSCROLL))
+        self.st = wx.TextCtrl(self, value="", style = (wx.TE_READONLY | wx.TE_MULTILINE), size=(dimensions[0],dimensions[1]))
         self.st.Enable(False)
         self.st.SetScrollPos(wx.VERTICAL, self.st.GetScrollRange(wx.VERTICAL))
         self.st.SetInsertionPoint(-1)
@@ -31,6 +31,7 @@ class Overlay2(wx.Frame):
         font.PointSize = 12
         self.st.SetFont(font)
         self.st.SetForegroundColour((255,255,255))
+        self.st.SetBackgroundColour((0,0,0))
         #self.st.Wrap(self.Size[0])
 
         self.timer = wx.Timer(self)
