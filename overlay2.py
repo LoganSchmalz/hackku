@@ -28,3 +28,6 @@ class Overlay2(wx.Frame):
     def update_label(self, event) -> None:
         wait_time, update_text = self.get_new_text_callback()
         self.st.SetLabelText("\n".join(update_text))
+
+    def change_position(self, pos, event):
+        self.SetPosition(wx.Point(pos[0], pos[1]))
