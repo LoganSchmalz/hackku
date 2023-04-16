@@ -5,6 +5,7 @@ from audio_processor import AudioProcessor
 from audio_bridge import AudioBridge
 from sys import platform
 import wx
+import re
 if 'windows' in platform:
     import win32api
 
@@ -15,8 +16,14 @@ def main():
             "plant", "defuse", "defusing", "sticking", "stick", "planting", "bomb", "spike", 
             "lit", "one shot", "1", "low",
             "boat", "boathouse", "market", "pizza", "garden", "tree", "window", "rafters", "tree", "cat", "dice", "generator", "Jen", "door", "wine", "courtyard", "cat", "catwalk", "Subrosa", 
-            ])
+            ]).font.highlight_color = WD_COLOR_INDEX.YELLOW
+    #highlight key words
+    #def highlight(get_new_text, key_phrases):
+    #replacement = lambda match: "<mark>" + match.group() + "</mark>"
+    #text = re.sub("|".join(map(re.escape, key_phrases)), replacement, text, flags=re.I)
 
+    #ighlight(get_new_text, keywords)
+    
     speakers = AudioBridge()
     ap = AudioProcessor(source=speakers, phrases=key_phrases)
 
