@@ -61,7 +61,8 @@ class AudioProcessor:
         self.transcription = ['']
 
         with self.source as source:
-            self.recorder.adjust_for_ambient_noise(source)
+            if (source.device_index != 17):
+                self.recorder.adjust_for_ambient_noise(source)
 
         def record_callback(_, audio:sr.AudioData) -> None:
             """

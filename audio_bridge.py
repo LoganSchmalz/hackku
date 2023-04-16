@@ -25,6 +25,7 @@ class AudioBridge(sr.AudioSource):
         audio = self.pyaudio_module.PyAudio()
         try:
             count = audio.get_device_count()  # obtain device count
+
             if device_index is not None:  # ensure device index is in range
                 assert 0 <= device_index < count, "Device index out of range ({} devices available; device index should be between 0 and {} inclusive)".format(count, count - 1)
 

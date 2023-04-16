@@ -22,13 +22,15 @@ def main():
     #text = re.sub("|".join(map(re.escape, key_phrases)), replacement, text, flags=re.I)
 
     #highlight(get_new_text, key_phrases)
-    
+
     if 'win' in platform:
-        speakers = AudioBridge()
+        #UNCOMMENT THE FOLLOWING TO GET IT TO WORK FOR SPEAKERS
+        #speakers = AudioBridge()
+        speakers = AudioBridge(device_index=17)
         ap = AudioProcessor(source=speakers, phrases=key_phrases)
     else:
         ap = AudioProcessor(phrases=key_phrases)
-
+    
     def get_new_text():
         ap.update_transcript()
         return (500, ap.transcription)
