@@ -27,13 +27,15 @@ class Overlay2(wx.Frame):
         self.Bind(wx.EVT_TIMER, self.update_label, self.timer)
         self.timer.Start(500)
 
-        self.tb = TaskBarIcon()
+        self.tb = TaskBarIcon(self.change_position, self.change_size)
 
     def update_label(self, event) -> None:
         wait_time, update_text = self.get_new_text_callback()
         self.st.SetLabelText("\n".join(update_text))
         self.st.Wrap(self.Size[0])
 
-
     def change_position(self, pos, event):
         self.SetPosition(wx.Point(pos[0], pos[1]))
+
+    def change_size(self, size, event):
+        self.SetSize(wx.Size(size[0], size[1]))
