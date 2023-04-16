@@ -17,7 +17,7 @@ class Overlay2(wx.Frame):
                   wx.NO_BORDER | wx.FRAME_SHAPED )
         
         wx.Frame.__init__(self, None, title='Fancy', style = style)
-        self.SetTransparent(200)
+        self.SetTransparent(220)
         self.Show(True)
         self.SetPosition(wx.Point(self.coordinates[0], self.coordinates[1]))
         self.SetSize(wx.Size(self.dimensions[0], self.dimensions[1]))
@@ -29,14 +29,14 @@ class Overlay2(wx.Frame):
         self.st.SetInsertionPoint(-1)
         font = self.st.GetFont()
         font.PointSize = 12
+        font.SetWeight(600)
         self.st.SetFont(font)
         self.st.SetForegroundColour((255,255,255))
         self.st.SetBackgroundColour((0,0,0))
         #self.st.Wrap(self.Size[0])
 
         self.kt = wx.TextCtrl(self, value="", style = (wx.TE_READONLY), size=(self.dimensions[0], 30))
-
-        self.st.Enable(False)
+        self.kt.SetForegroundColour((0, 0, 0))
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.update_label, self.timer)
@@ -52,7 +52,9 @@ class Overlay2(wx.Frame):
         self.st.SetInsertionPoint(-1)
 
     def update_key_label(self, phrases_list) -> None:
-        return
+        self.kt.SetValue("".join(phrases_list))
+        self.kt.SetInsertionPoint(-1)
+        #return
     
     def check_transcript(self, update_text, key_phrases, event):
         words_list = [] #list of current words in the updated text
@@ -64,10 +66,10 @@ class Overlay2(wx.Frame):
         for i in words_list:
             for j in key_phrases.split():
                 if (i.lower() == j.lower()):
-                    phrases_list.append(i)
+                    phrases_list.append(j)
 
         print(phrases_list)
-
+        self.update_key_label(phrases_list)
         return phrases_list
 
 
