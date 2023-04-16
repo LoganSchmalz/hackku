@@ -1,6 +1,5 @@
 import wx
 import wx.adv
-import win32api
 
 tray_name = 'Voice to Text'
 icon = 'icon.png'

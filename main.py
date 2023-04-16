@@ -2,11 +2,10 @@ from time import sleep
 #from overlay import Overlay
 from overlay2 import Overlay2
 from audio_processor import AudioProcessor
-from audio_bridge import AudioBridge
 from sys import platform
 import wx
-import re
 if 'windows' in platform:
+    from audio_bridge import AudioBridge
     import win32api
 
 def main():
@@ -24,8 +23,11 @@ def main():
 
     #highlight(get_new_text, key_phrases)
     
-    speakers = AudioBridge()
-    ap = AudioProcessor(source=speakers, phrases=key_phrases)
+    if 'windows' in platform:
+        speakers = AudioBridge()
+        ap = AudioProcessor(source=speakers, phrases=key_phrases)
+    else:
+        ap = AudioProcessor(phrases=key_phrases)
 
     def get_new_text():
         ap.update_transcript()
