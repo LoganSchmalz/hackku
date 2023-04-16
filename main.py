@@ -23,7 +23,6 @@ def main():
 
     #highlight(get_new_text, key_phrases)
     
-    print(platform)
     if 'win' in platform:
         speakers = AudioBridge()
         ap = AudioProcessor(source=speakers, phrases=key_phrases)
