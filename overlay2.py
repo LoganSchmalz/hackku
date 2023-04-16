@@ -5,6 +5,8 @@ from tray_icon import TaskBarIcon
 class Overlay2(wx.Frame):
     def __init__(self, screen_width, screen_height, get_new_text_callback):
         self.get_new_text_callback = get_new_text_callback
+        self.screen_width = screen_width
+        self.screen_height = screen_height
         dimensions: Tuple[int, int] = (int(screen_width/2), int(screen_height/2))
         coordinates: Tuple[int, int] = (
         screen_width - (dimensions[0] + int(screen_width/2.1)),
