@@ -36,6 +36,7 @@ class Overlay2(wx.Frame):
         #self.st.Wrap(self.Size[0])
 
         self.kt = wx.TextCtrl(self, value="", style = (wx.TE_READONLY), size=(self.dimensions[0], 30))
+        self.kt.Enable(False)
         font = self.kt.GetFont()
         font.PointSize = 14
         font.SetWeight(800)

@@ -46,8 +46,8 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         create_menu_item(position,"Middle Right",self.mid_right)
         position.AppendSeparator()
         create_menu_item(position,"Bottom Left",self.bot_left)
-        position.AppendSeparator()
-        create_menu_item(position,"Bottom Right",self.bot_right)
+        # position.AppendSeparator()
+        # create_menu_item(position,"Bottom Right",self.bot_right)
 
         wx.Menu.AppendSubMenu(menu,size,'Overlay Size')
         menu.AppendSeparator()

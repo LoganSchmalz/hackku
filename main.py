@@ -25,8 +25,8 @@ def main():
 
     if 'win' in platform:
         #UNCOMMENT THE FOLLOWING TO GET IT TO WORK FOR SPEAKERS
-        #speakers = AudioBridge()
-        speakers = AudioBridge(device_index=17)
+        speakers = AudioBridge()
+        #speakers = AudioBridge(device_index=17)
         ap = AudioProcessor(source=speakers, phrases=key_phrases)
     else:
         ap = AudioProcessor(phrases=key_phrases)
